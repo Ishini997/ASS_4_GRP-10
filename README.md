@@ -52,83 +52,36 @@ Question 3
 top_genes <- head(gene_data[order(-gene_data$mean_expression), ], 10)
 top_genes
 ```
+
 order() : returns the indices which would sort a vector in ascending fashion.
+
+Question 4
+
+# the number of genes with a mean <10
+```{r}
+num_genes_low_expression <- sum(gene_data$mean_expression < 10)
+num_genes_low_expression
+```
+
+The code counts how many genes in the gene_data dataframe have a mean expression value below 10. It uses the sum() function to evaluate each entry in the mean_expression column, determining how many of these values are less than 10. The count of these low-expression genes is stored in the variable num_genes_low_expression, providing the total number of genes with low expression levels.
+
+
+
+
+
+
+
+
+
+
+
+
+
 The use of the- before gene_data$mean_expression sorts the numbers in a descending fashion - this means from highest to lowest mean expression.
 gene_data[order(-gene_data$mean_expression), ] : This reordered the rows of gene_data according to the sorted mean expression values so genes with highest mean are at top.
 head() : It selects the first 10 rows of the reordered data frame i.e., the 10 genes having highest mean expression.
 top_genes <-. : These 10 selected genes are stored in the data frame top_genes for further inspection.
 top_genes : It prints the top 10 genes along with their expression values and mean expression.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Question 8
-
-# mean and standard deviation of three circumference at the start and end of the study
-#mean 
-```{r}
-north <- subset(csv_columns,Site==("northeast"),c("Circumf_2005_cm","Circumf_2020_cm"))
-colMeans(north)
-north
-```
-#mean
-```{r}
-south <- subset(csv_columns,Site==("southwest"),c("Circumf_2005_cm","Circumf_2020_cm"))
-colMeans(south)
-south
-```
-This command will show the entire data frame stored in the variable csv_columns and can inspect the data, including the columns that contain tree circumference measurements.
-#mean
-subset(): It generates a new data frame, north/south, containing only the rows whose value in the column Site is "northeast” or “Southeast."
-select = c("Circumf_2005_cm", argument Circumf_2020_cm: This argument selects the column that will remain in the new data frame; here, it selects columns corresponding to girth measurements for 2005 and 2020.
-colMeans(): A function that calculates the mean of numeric columns in north data frame.
-This will output a named numeric vector showing the mean circumference for Circumf_2005_cm and Circumf_2020_cm.
-circumference mean of southwest.
-•	Circumf_2005_cm = 4.862 
-
-•	Circumf_2020_cm = 45.596  
-
-Circumference mean of northeast.
-
-•	Circumf_2005_cm = 5.292           
-
-•	Circumf_2020_cm = 54.228
-
 
 
 
