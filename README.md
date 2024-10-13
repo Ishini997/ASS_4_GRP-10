@@ -11,7 +11,7 @@ download.file(URL, destfile = "gene_expression.tsv")
 url: Saves the file's URL for future downloads. This should be changed to the actual web address hosting your gene_expression.tsv file.
 destfile: Indicates the name and location on your local system where the downloaded file will be saved. In this case, the file with the name gene_expression.tsv will be saved in the current working directory.
 
-# Read File 
+#read the file
 
 ```{r}
 gene_data <- read.table("gene_expression.tsv", header = TRUE, sep = "\t")
@@ -21,7 +21,7 @@ the above code read.table(): This is the R function that reads tabular data file
 header = TRUE: It means the first line of the text file contains column names.
 sep = "\t" : This informs the reader that the tab character (\t) is utilized as the delimiter between values, a convention in TSV files. local system where the downloaded file will be saved. In this case, the file with the name gene_expression.tsv will be saved in the current working directory.
 
-# Displaying the first six genes
+#displaying the first six genes
 
 ```{r}
 head(gene_data)
@@ -30,7 +30,7 @@ head(gene_data)
 
 Question 2
 
-# Calculating the Mean
+#calculating the mean
 ```{r}
 str(gene_data)
 gene_data$mean_expression <- rowMeans(gene_data[, sapply(gene_data, is.numeric)], na.rm = TRUE)
@@ -45,19 +45,27 @@ na.rm = TRUE:  ensures that any missing values (NA) are ignored in the calculati
 gene_data$mean_expression <- ... : It calculates the mean expression for each gene and stores it in a new column called mean_expression in the gene_data data frame.
 head(gene_data) : Display the first six rows of the updated dataframe which should include the new column mean_expression.
 
-Question 3
+question 3
 
-# Top ten genes with highest mean Expression
+
+
+
+
+
+
+
+
+
+
+
+
+Question 4
+
+# the number of genes with a mean <10
 ```{r}
-top_genes <- head(gene_data[order(-gene_data$mean_expression), ], 10)
-top_genes
+num_genes_low_expression <- sum(gene_data$mean_expression < 10)
+num_genes_low_expression
 ```
-order() : returns the indices which would sort a vector in ascending fashion.
-The use of the- before gene_data$mean_expression sorts the numbers in a descending fashion - this means from highest to lowest mean expression.
-gene_data[order(-gene_data$mean_expression), ] : This reordered the rows of gene_data according to the sorted mean expression values so genes with highest mean are at top.
-head() : It selects the first 10 rows of the reordered data frame i.e., the 10 genes having highest mean expression.
-top_genes <-. : These 10 selected genes are stored in the data frame top_genes for further inspection.
-top_genes : It prints the top 10 genes along with their expression values and mean expression.
-
+The code counts how many genes in the gene_data dataframe have a mean expression value below 10. It uses the sum() function to evaluate each entry in the mean_expression column, determining how many of these values are less than 10. The count of these low-expression genes is stored in the variable num_genes_low_expression, providing the total number of genes with low expression levels.
 
 
